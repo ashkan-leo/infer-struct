@@ -1,0 +1,4 @@
+#+TITLE: Readme
+
+* Introduction
+Structual Inference Project
