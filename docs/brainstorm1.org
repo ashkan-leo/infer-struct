@@ -1,0 +1,19 @@
+#+TITLE: [[file:../../../Dropbox/Apps/org-roam/20210309001953-estimating_the_structure_of_networks_with_certain_properties.org][Estimating the Structure of Networks with Certain Properties]]
+
+#+Latex_HEADER: \newtheorem{definition}{Definition}
+
+* Table of Contents :TOC_2:noexport:
+- [[#introduction][Introduction]]
+- [[#technical-preliminary][Technical Preliminary]]
+  - [[#graph][Graph]]
+
+* Introduction
+The introduction goes here.
+* Technical Preliminary
+** Graph
+#+BEGIN_definition
+Hello I'm a theorem
+#+END_definition
+Assume the existence of a network $G = (V, E)$
+\begin{equation}
+\end{equation}
