@@ -1,4 +1,6 @@
-from numpy import ndarray, vstack, zeros_like
+import networkx as nx
+import numpy as np
+from numpy import ndarray
 from pandas import DataFrame, read_csv
 
 from .. import util
@@ -12,17 +14,24 @@ class PowerGridSimpleExample:
     base_data_path: str = Settings["path"]["power_grid_simple_examples"]
 
     def __init__(self, node: int):
+
         self.number_of_nodes = node
         self.example_id = f"{node}_nodes"
 
-        self.Ybus_theta = self.get_matrix("Ybus_theta")
-        self.Ybus_mag = self.get_matrix("Ybus_mag")
         self.pl = self.get_vector("pl")
         self.ql = self.get_vector("ql")
+
         self.pg = self.get_vector("pg")
         self.qg = self.get_vector("qg")
+
         self.v = self.get_vector("vs")
         self.d = self.get_vector("ds")
+
+        self.Ybus_theta = self.get_matrix("Ybus_theta")
+        self.Ybus_mag = self.get_matrix("Ybus_mag")
+
+        self.G_mag = nx.from_numpy_array(self.Ybus_mag)
+        self.G_theta = nx.from_numpy_array(self.Ybus_theta)
 
     def _get_path(self, arr_name: str) -> str:
         return f"{self.base_data_path}/network_{self.example_id}_{arr_name}.csv"
@@ -41,4 +50,4 @@ class PowerGridSimpleExample:
         matrix = DataFrame(read_csv(matrix_path)).to_numpy()
         # NOTE Pad a vector of zero to the top of the matrix
         # TODO verify this is the correct assumption
-        return vstack((zeros_like(matrix[0]), matrix))
+        return np.vstack((np.zeros_like(matrix[0]), matrix))
