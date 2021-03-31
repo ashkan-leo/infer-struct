@@ -30,8 +30,8 @@ class PowerGridSimpleExample:
         self.Ybus_theta = self.get_matrix("Ybus_theta")
         self.Ybus_mag = self.get_matrix("Ybus_mag")
 
-        self.G_mag = nx.from_numpy_array(self.Ybus_mag)
-        self.G_theta = nx.from_numpy_array(self.Ybus_theta)
+        self.Gbus_mag = nx.from_numpy_array(self.Ybus_mag)
+        self.Gbus_theta = nx.from_numpy_array(self.Ybus_theta)
 
     def _get_path(self, arr_name: str) -> str:
         return f"{self.base_data_path}/network_{self.example_id}_{arr_name}.csv"
