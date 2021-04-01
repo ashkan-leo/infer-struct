@@ -14,7 +14,7 @@ def create_array(ixs: List[int], vals: List[int], length: int):
     return arr
 
 
-def print_numpy(arr: ndarray, precision: int = 2, suppress: bool = True):
+def print_numpy(arr: ndarray, pre_text: str ="", post_text: str = "\n", precision: int = 2, suppress: bool = True):
     """print the given array"""
     with np.printoptions(precision=precision, suppress=suppress):
-        return print(arr)
+        return print(pre_text, arr, post_text)
