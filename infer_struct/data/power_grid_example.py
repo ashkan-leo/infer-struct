@@ -39,7 +39,7 @@ class PowerGridSimpleExample:
     def get_vector(self, name: str) -> ndarray:
         """Load a vector by name"""
         vector_path = self._get_path(name)
-        vector_df = DataFrame(read_csv(vector_path))
+        vector_df = DataFrame(read_csv(vector_path, header=None))
         ixs = list(map(lambda i: i - 1, vector_df.iloc[:, 0]))
         vals = vector_df.iloc[:, 1]
         return util.create_array(ixs, vals, self.number_of_nodes)
@@ -47,7 +47,8 @@ class PowerGridSimpleExample:
     def get_matrix(self, name: str) -> ndarray:
         """Load a matrix by name. always assumes the first row is missing"""
         matrix_path = self._get_path(name)
-        matrix = DataFrame(read_csv(matrix_path)).to_numpy()
+        matrix = DataFrame(read_csv(matrix_path, header=None)).to_numpy()
         # NOTE Pad a vector of zero to the top of the matrix
         # TODO verify this is the correct assumption
-        return np.vstack((np.zeros_like(matrix[0]), matrix))
+        # return np.vstack((np.zeros_like(matrix[0]), matrix))
+        return matrix
